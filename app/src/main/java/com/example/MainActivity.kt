@@ -62,6 +62,86 @@ import java.util.Locale
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        // Capture and display diagnostic errors nicely on-screen if the application crashed
+        val crashTrace = intent.getStringExtra("crash_trace")
+        if (crashTrace != null) {
+            super.onCreate(savedInstanceState)
+            enableEdgeToEdge()
+            setContent {
+                MyApplicationTheme(darkTheme = true) {
+                    Scaffold(modifier = Modifier.fillMaxSize()) { padding ->
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(Color(0xFF0F172A))
+                                .padding(padding)
+                                .padding(24.dp)
+                                .verticalScroll(rememberScrollState()),
+                            verticalArrangement = Arrangement.spacedBy(16.dp)
+                        ) {
+                            Text(
+                                text = "App Diagnostics Console",
+                                style = MaterialTheme.typography.headlineMedium,
+                                color = MaterialTheme.colorScheme.error,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                text = "A startup or runtime error was captured. See trace details below:",
+                                style = MaterialTheme.typography.bodyMedium,
+                                color = Color.White.copy(alpha = 0.8f)
+                            )
+                            Card(
+                                colors = CardDefaults.cardColors(
+                                    containerColor = Color(0xFF1E293B)
+                                ),
+                                border = BorderStroke(1.dp, Color.Red.copy(alpha = 0.5f)),
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text(
+                                    text = crashTrace,
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = Color(0xFFF1F5F9),
+                                    modifier = Modifier.padding(16.dp),
+                                    fontFamily = androidx.compose.ui.text.font.FontFamily.Monospace
+                                )
+                            }
+                            Button(
+                                onClick = {
+                                    val restartIntent = Intent(this@MainActivity, MainActivity::class.java).apply {
+                                        flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                                    }
+                                    startActivity(restartIntent)
+                                },
+                                colors = ButtonDefaults.buttonColors(
+                                    containerColor = MaterialTheme.colorScheme.error
+                                ),
+                                modifier = Modifier.fillMaxWidth()
+                            ) {
+                                Text("Restart Application", color = Color.White)
+                            }
+                        }
+                    }
+                }
+            }
+            return
+        }
+
+        // Set global crash catcher
+        Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
+            val sw = java.io.StringWriter()
+            val pw = java.io.PrintWriter(sw)
+            throwable.printStackTrace(pw)
+            val stackTraceString = sw.toString()
+            
+            val restartIntent = Intent(this, MainActivity::class.java).apply {
+                putExtra("crash_trace", stackTraceString)
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            }
+            startActivity(restartIntent)
+            android.os.Process.killProcess(android.os.Process.myPid())
+            java.lang.System.exit(10)
+        }
+
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
