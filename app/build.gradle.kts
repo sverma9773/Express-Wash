@@ -1,3 +1,6 @@
+import java.io.File
+import java.net.URL
+
 plugins {
   alias(libs.plugins.android.application)
   alias(libs.plugins.kotlin.compose)
@@ -120,3 +123,42 @@ dependencies {
   "ksp"(libs.androidx.room.compiler)
   "ksp"(libs.moshi.kotlin.codegen)
 }
+
+tasks.register("downloadFonts") {
+  notCompatibleWithConfigurationCache("Downloads fonts dynamically")
+  doLast {
+    val destDir = file("src/main/res/font")
+    if (!destDir.exists()) {
+      destDir.mkdirs()
+    }
+    val fonts = mapOf(
+      "urbanist_light.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-Light.ttf",
+      "urbanist_regular.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-Regular.ttf",
+      "urbanist_medium.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-Medium.ttf",
+      "urbanist_semibold.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-SemiBold.ttf",
+      "urbanist_bold.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-Bold.ttf"
+    )
+    for ((name, urlStr) in fonts) {
+      val destFile = File(destDir, name)
+      if (!destFile.exists()) {
+        println("Downloading $name...")
+        try {
+          val connection = URL(urlStr).openConnection()
+          connection.setRequestProperty("User-Agent", "Mozilla/5.0")
+          connection.getInputStream().use { input ->
+            destFile.outputStream().use { output ->
+              input.copyTo(output)
+            }
+          }
+        } catch (e: Exception) {
+          println("Failed to download $name: ${e.javaClass.simpleName} - ${e.message}")
+        }
+      }
+    }
+  }
+}
+
+tasks.matching { it.name == "preBuild" }.configureEach {
+  dependsOn("downloadFonts")
+}
+
