@@ -877,11 +877,11 @@ fun HomeScreen(
 
     // Slide Carousel State
     val banners = listOf(
-        Pair("Fully Automatic Tunnel Wash", "Scratch-free robotic conveyor technology"),
-        Pair("Active Premium Foam Jet Wash", "Lather wash removing all micro dirt molecules"),
-        Pair("Dual Coating Paint Protect", "Premium wax gloss glaze shield armor"),
-        Pair("Alloy Wheel Deep Detail Shine", "Intense metallic brake-dust sweep"),
-        Pair("Sanitized Vacuum Cabin Polish", "Pristine dustless console dashboard cleaning")
+        Pair("Automatic Tunnel Wash", "Fast and scratch-free machine wash using soft rollers"),
+        Pair("Premium Foam Wash", "Thick active snow foam that deeply cleans dirt and road grime"),
+        Pair("Paint Protective Wax", "Long-lasting wax coating for paint protection and a deep shine"),
+        Pair("Alloy Wheel Deep Cleaning", "Cleans brake dust and shines wheels for a clean finish"),
+        Pair("Full Cabin Vacuuming", "Thorough seat cleaning, vacuuming, and dashboard dressing")
     )
     var activeSlideIndex by remember { mutableStateOf(0) }
 
@@ -946,7 +946,7 @@ fun HomeScreen(
                             modifier = Modifier.padding(bottom = 8.dp)
                         ) {
                             Text(
-                                text = " PREMIUM SLIDER ${targetIndex + 1}/5 ",
+                                text = " FEATURE ${targetIndex + 1}/5 ",
                                 fontSize = 9.sp,
                                 color = Color(0xFFFF4D4D),
                                 fontWeight = FontWeight.Bold,
@@ -997,9 +997,9 @@ fun HomeScreen(
                     .padding(20.dp)
             ) {
                 Text(
-                    text = "Welcome to Lucknow's First Advanced Automatic Robotic Car Caring Center",
+                    text = "Welcome to Lucknow's First Automatic Car Wash",
                     fontSize = 13.sp,
-                    fontWeight = FontWeight.SemiBold,
+                    fontWeight = FontWeight.Bold,
                     color = MaterialTheme.colorScheme.primary
                 )
                 Spacer(modifier = Modifier.height(20.dp))
@@ -1017,14 +1017,14 @@ fun HomeScreen(
                 Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                     QuickActionCard(
                         title = "Book Wash",
-                        subtitle = "Instant appointment",
+                        subtitle = "Book an appointment",
                         icon = Icons.Default.CalendarMonth,
                         onClick = onNavigateToBooking,
                         modifier = Modifier.weight(1f).testTag("action_book")
                     )
                     QuickActionCard(
                         title = "Services",
-                        subtitle = "Exploration pricing",
+                        subtitle = "View our prices",
                         icon = Icons.Default.DirectionsCar,
                         onClick = onNavigateToServices,
                         modifier = Modifier.weight(1f).testTag("action_services")
@@ -1041,7 +1041,7 @@ fun HomeScreen(
                         verticalAlignment = Alignment.CenterVertically
                     ) {
                         Text(
-                            text = "LATEST BRAND PROMOTIONS",
+                            text = "LATEST OFFERS & COUPONS",
                             fontSize = 11.sp,
                             fontWeight = FontWeight.Black,
                             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
@@ -1050,11 +1050,11 @@ fun HomeScreen(
                     }
                     Spacer(modifier = Modifier.height(8.dp))
                     Card(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .border(1.dp, Color(0xFFE30613).copy(alpha = 0.4f), RoundedCornerShape(12.dp)),
+                        modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                        shape = RoundedCornerShape(12.dp)
+                        shape = RoundedCornerShape(12.dp),
+                        border = BorderStroke(1.dp, Color(0xFFE30613).copy(alpha = 0.4f)),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(16.dp)) {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -1111,7 +1111,7 @@ fun HomeScreen(
 
                 // E. CUSTOMER REVIEWS FEEDBACK SLIDER
                 Text(
-                    text = "CUSTOMER DETAILED REVIEW RATINGS",
+                    text = "WHAT OUR CUSTOMERS SAY",
                     fontSize = 11.sp,
                     fontWeight = FontWeight.Black,
                     color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.5f),
@@ -1129,7 +1129,9 @@ fun HomeScreen(
                                 .width(280.dp)
                                 .height(130.dp),
                             shape = RoundedCornerShape(12.dp),
-                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                         ) {
                             Column(modifier = Modifier.padding(12.dp)) {
                                 Row(
@@ -1186,7 +1188,8 @@ fun QuickActionCard(
         modifier = modifier.heightIn(min = 72.dp),
         shape = RoundedCornerShape(12.dp),
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        elevation = CardDefaults.cardElevation(2.dp)
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
             modifier = Modifier
@@ -1232,14 +1235,14 @@ fun ServicesScreen(
     onNavigateToBooking: (String) -> Unit
 ) {
     val services = listOf(
-        Pair("Automatic Car Wash", "Advanced robotic wash system for fast and efficient exterior clean. Process completes within minutes, including dual high-intensity air dryers."),
-        Pair("Foam & High-Pressure Jet Wash", "Deep cleaning with premium active snow foam bath and intense 350-bar water pressure Sweeper to lift stubborn mud."),
-        Pair("Wax Wash & Paint Protection", "Enhance glazes, seals, and defends paintwork from Uttar Pradesh ultraviolet rays and high-traffic road impurities."),
-        Pair("Interior Dry Cleaning", "Complete interior restoration: detailing active seats, side dashboard panels, custom console treatment, and premium cabin vacuuming."),
-        Pair("Teflon Coating", "Long-lasting surface paint detailing with advanced composite sealants. Imparts severe water bead-off glow finish."),
-        Pair("Alloy Wheel Deep Cleaning", "Intriguing brake dust dissolver wash, high pressure tire scrub, and intense metal alloy polish brush shine."),
-        Pair("Rubbing & Polishing", "Eliminate surface scratches, swirls, oxidation, and restore the vehicle to a deep showroom glaze look."),
-        Pair("Interior & Exterior Detailing", "Comprehensive bumper-to-bumper car spa wash, internal detailing, chassis clean, engine gloss shield, and full protect wax polish.")
+        Pair("Automatic Car Wash", "Quick and scratch-free machine wash for exterior cleaning. Finished in under 10 minutes with strong air dryers."),
+        Pair("Foam & High-Pressure Jet Wash", "Deep cleaning using thick snow foam and high-pressure water jets to remove tough mud and road grime."),
+        Pair("Wax Wash & Paint Protection", "Protective coat wax wash that adds a long-lasting shine and protects your car's paint from weather damage."),
+        Pair("Interior Dry Cleaning", "Thorough cleaning of seats, door panels, and dashboard, along with complete cabin vacuuming."),
+        Pair("Teflon Coating", "Premium paint sealant coating that protects your car's body from fine scratches and ensures water beads right off."),
+        Pair("Alloy Wheel Deep Cleaning", "Wheel buster wash to remove brake dust, high-pressure tire scrubbing, and tire polishing."),
+        Pair("Rubbing & Polishing", "Professional machine rubbing and buffing to eliminate light swirls and restore original showroom shine."),
+        Pair("Interior & Exterior Detailing", "Bumper-to-bumper deep wash package including complete interior cleaning, underbody washing, and paint protective wax.")
     )
 
     Column(
@@ -1248,14 +1251,14 @@ fun ServicesScreen(
             .padding(16.dp)
     ) {
         Text(
-            text = "OUR PREMIUM CAR CARING SERVICES",
+            text = "OUR CAR WASH SERVICES",
             fontSize = 11.sp,
             fontWeight = FontWeight.Black,
             color = MaterialTheme.colorScheme.primary,
             letterSpacing = 1.sp
         )
         Text(
-            text = "Select a Premium Detailing Treatment",
+            text = "Select a Service",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
@@ -1273,7 +1276,9 @@ fun ServicesScreen(
                         .fillMaxWidth()
                         .testTag("service_card_${s.first.replace(" ", "_")}"),
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                    shape = RoundedCornerShape(12.dp)
+                    shape = RoundedCornerShape(12.dp),
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Row(
@@ -1352,14 +1357,14 @@ fun BookingScreen(
                 .verticalScroll(rememberScrollState())
         ) {
             Text(
-                text = "SCHEDULING PORTAL",
+                text = "BOOK A WASH",
                 fontSize = 11.sp,
                 fontWeight = FontWeight.Black,
                 color = MaterialTheme.colorScheme.primary,
                 letterSpacing = 1.sp
             )
             Text(
-                text = "Secure Your Detailing Slot",
+                text = "Choose your appointment details",
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Bold,
                 color = MaterialTheme.colorScheme.onBackground
@@ -1407,7 +1412,7 @@ fun BookingScreen(
             Spacer(modifier = Modifier.height(14.dp))
 
             // Vehicle Type Multi-Choice Grid (2x2 layout is extremely robust against text wrap on tight screens)
-            Text("Vehicle Frame Profile:", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+            Text("Vehicle Type:", fontSize = 12.sp, fontWeight = FontWeight.Bold)
             Spacer(modifier = Modifier.height(6.dp))
             val types = listOf("Hatchback", "Sedan", "SUV", "Luxury Car")
             Column(modifier = Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -1661,7 +1666,8 @@ fun BookingScreen(
                     modifier = Modifier.fillMaxWidth(),
                     shape = RoundedCornerShape(16.dp),
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Row(
@@ -1757,14 +1763,14 @@ fun StatusScreen(
             .padding(16.dp)
     ) {
         Text(
-            text = "REGISTRY TRACKING",
+            text = "TRACK BOOKING",
             fontSize = 11.sp,
             fontWeight = FontWeight.Black,
             color = MaterialTheme.colorScheme.primary,
             letterSpacing = 1.sp
         )
         Text(
-            text = "Track Scheduled Wash",
+            text = "Search your booking status",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
@@ -1774,7 +1780,7 @@ fun StatusScreen(
         OutlinedTextField(
             value = vm.searchMobileQuery,
             onValueChange = { vm.onSearchQueryChanged(it) },
-            label = { Text("Search by Registered Mobile Number") },
+            label = { Text("Enter your mobile number") },
             modifier = Modifier
                 .fillMaxWidth()
                 .testTag("status_search_bar"),
@@ -1806,12 +1812,12 @@ fun StatusScreen(
                     )
                     Spacer(modifier = Modifier.height(8.dp))
                     Text(
-                        text = "No Wash Schedules Found",
+                        text = "No Bookings Found",
                         fontWeight = FontWeight.Bold,
                         color = Color.Gray
                     )
                     Text(
-                        text = "Enter a valid registered mobile number above to find your live status.",
+                        text = "Enter your mobile number above to find your booking.",
                         fontSize = 11.sp,
                         color = Color.Gray.copy(alpha = 0.8f),
                         textAlign = TextAlign.Center,
@@ -1830,7 +1836,8 @@ fun StatusScreen(
                     Card(
                         modifier = Modifier.fillMaxWidth(),
                         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                        border = BorderStroke(1.dp, Color.Gray.copy(alpha = 0.2f))
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(14.dp)) {
                             Row(
@@ -1967,14 +1974,14 @@ fun MoreScreen(
         Spacer(modifier = Modifier.height(24.dp))
 
         Text(
-            text = "ADDITIONAL TILES",
+            text = "MORE OPTIONS",
             fontSize = 11.sp,
             fontWeight = FontWeight.Black,
             color = MaterialTheme.colorScheme.primary,
             letterSpacing = 1.sp
         )
         Text(
-            text = "Explore App Sections",
+            text = "Explore our app",
             fontSize = 20.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
@@ -1982,29 +1989,29 @@ fun MoreScreen(
         Spacer(modifier = Modifier.height(16.dp))
 
         MoreMenuTile(
-            title = "Promo Coupons & Offers",
-            desc = "Redeem vouchers and special discounts in Lucknow",
+            title = "Offers & Coupons",
+            desc = "Find active discounts and special savings",
             icon = Icons.Default.LocalOffer,
             onClick = { onNavigateScreen(Screen.Offers.route) },
             tag = "more_offers_btn"
         )
         MoreMenuTile(
-            title = "Robot Center Gallery",
-            desc = "View live high gloss detailing finished results",
+            title = "Photo Gallery",
+            desc = "See pictures of cars washed at our center",
             icon = Icons.Default.Collections,
             onClick = { onNavigateScreen(Screen.Gallery.route) },
             tag = "more_gallery_btn"
         )
         MoreMenuTile(
-            title = "About Our Clean Standards",
-            desc = "Lucknow's first conveyor belt intelligent machine detailing",
+            title = "About Us",
+            desc = "Learn about our equipment and values",
             icon = Icons.Default.Info,
             onClick = { onNavigateScreen(Screen.AboutUs.route) },
             tag = "more_about_btn"
         )
         MoreMenuTile(
-            title = "Get In Touch",
-            desc = "Address, support numbers, and navigator mappings",
+            title = "Contact Us",
+            desc = "Get our address, phone number, and location",
             icon = Icons.Default.Map,
             onClick = { onNavigateScreen(Screen.Contact.route) },
             tag = "more_contact_btn"
@@ -2013,11 +2020,13 @@ fun MoreScreen(
         HorizontalDivider(modifier = Modifier.padding(vertical = 12.dp))
 
         // Review Feedback Submissions Tile
-        Text("WRITE A RECENT REVIEW:", fontSize = 12.sp, fontWeight = FontWeight.Bold)
+        Text("WRITE A CUSTOMER REVIEW", fontSize = 12.sp, fontWeight = FontWeight.Bold)
         Spacer(modifier = Modifier.height(6.dp))
         Card(
             modifier = Modifier.fillMaxWidth(),
-            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+            colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+            border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+            elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
         ) {
             Column(modifier = Modifier.padding(12.dp)) {
                 OutlinedTextField(
@@ -2037,7 +2046,7 @@ fun MoreScreen(
                 OutlinedTextField(
                     value = vm.customerReviewComment,
                     onValueChange = { vm.customerReviewComment = it },
-                    label = { Text("Write your detailing feedback") },
+                    label = { Text("Write your review experience") },
                     modifier = Modifier.fillMaxWidth()
                 )
                 Spacer(modifier = Modifier.height(12.dp))
@@ -2129,7 +2138,9 @@ fun MoreMenuTile(
             .padding(vertical = 4.dp)
             .clickable { onClick() }
             .testTag(tag),
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Row(
             modifier = Modifier.padding(14.dp),
@@ -2171,14 +2182,14 @@ fun GalleryScreen(
             .padding(16.dp)
     ) {
         Text(
-            text = "MEDIA PORTFOLIO",
+            text = "WORK GALLERY",
             fontSize = 11.sp,
             fontWeight = FontWeight.Black,
             color = MaterialTheme.colorScheme.primary,
             letterSpacing = 1.sp
         )
         Text(
-            text = "Robot Center Showcase Gallery",
+            text = "Photos of our work",
             fontSize = 18.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.onBackground
@@ -2231,7 +2242,9 @@ fun GalleryScreen(
                             .fillMaxWidth()
                             .clickable { selectedItemForZoom = item }
                             .testTag("gallery_grid_item_${item.title.replace(" ", "_")}"),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column {
                             // High fidelity stylized canvas mock picture representing action
@@ -2347,7 +2360,8 @@ fun OffersScreen(
                         .padding(vertical = 6.dp)
                         .testTag("offer_coupon_${offer.promoCode}"),
                     colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f))
+                    border = BorderStroke(1.dp, MaterialTheme.colorScheme.primary.copy(alpha = 0.3f)),
+                    elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                 ) {
                     Column(modifier = Modifier.padding(16.dp)) {
                         Row(
@@ -2434,7 +2448,7 @@ fun AboutUsScreen() {
         Spacer(modifier = Modifier.height(16.dp))
 
         Text(
-            text = "Lucknow's First Advanced Automatic Car Wash Experience",
+            text = "Lucknow's First Automatic Car Wash Experience",
             fontSize = 13.sp,
             fontWeight = FontWeight.Bold,
             color = MaterialTheme.colorScheme.primary,
@@ -2443,7 +2457,7 @@ fun AboutUsScreen() {
         )
         Spacer(modifier = Modifier.height(6.dp))
         Text(
-            text = "Experience next-generation automobile care with advanced automatic washing technology, premium cleaning solutions, and professional service standards designed for a faster, smarter, and scratch-free finish.",
+            text = "We use automated equipment, high-quality cleaning products, and professional care to provide your car with a faster, safer, and cleaner wash.",
             fontSize = 12.sp,
             color = MaterialTheme.colorScheme.onSurface.copy(alpha = 0.8f),
             lineHeight = 18.sp
@@ -2451,7 +2465,7 @@ fun AboutUsScreen() {
 
         Spacer(modifier = Modifier.height(20.dp))
         Text(
-            text = "WHY CHOOSE ROBOTIC XPRESS CAR WASH?",
+            text = "WHY CHOOSE US?",
             fontWeight = FontWeight.Black,
             fontSize = 13.sp,
             color = MaterialTheme.colorScheme.primary
@@ -2459,12 +2473,12 @@ fun AboutUsScreen() {
         Spacer(modifier = Modifier.height(8.dp))
 
         val bulletPoints = listOf(
-            "Advanced Automatic Machine Conveyor Technology — Ultra-precision robotics sweep.",
-            "Safe & Scratch-Free Active Cleaning — Eliminates human friction paint swirling.",
-            "Premium Professional-Grade Chemicals — Safe on automotive clearcoat glazing.",
-            "Surface-Specific Chemical Protect & Armor — Tailored SUV or sedan shielding.",
-            "Fast Robotic Delivery Swipes — Wash done within minutes under high timers.",
-            "Modern Equipment Detailing Station — High 40HP storm dry blowers."
+            "Automatic conveyor belt system for quick and consistent washing.",
+            "Scratch-free wash process to protect your vehicle's paint.",
+            "High-quality soaps and shampoos that are safe for your car's surface.",
+            "Specialized wax layers to help protect the clear coat on your car.",
+            "Quick cleaning that finishes the wash cycle in under 10 minutes.",
+            "Powerful air dryers that leave your car clean, dry and spot-free."
         )
 
         bulletPoints.forEach { point ->
@@ -2709,10 +2723,10 @@ fun AdminDashboardScreen(
                 Text("Bookings", fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(10.dp))
             }
             Tab(selected = activeAdminTab == 1, onClick = { activeAdminTab = 1 }) {
-                Text("Vouchers CRUD", fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(10.dp))
+                Text("Offers & Coupons", fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(10.dp))
             }
             Tab(selected = activeAdminTab == 2, onClick = { activeAdminTab = 2 }) {
-                Text("Gallery ADD", fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(10.dp))
+                Text("Gallery Photos", fontSize = 11.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(10.dp))
             }
         }
         Spacer(modifier = Modifier.height(12.dp))
@@ -2735,7 +2749,9 @@ fun AdminDashboardScreen(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .testTag("admin_booking_item_${bk.bookingId}"),
-                                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                             ) {
                                 Column(modifier = Modifier.padding(12.dp)) {
                                     Row(
@@ -2792,15 +2808,17 @@ fun AdminDashboardScreen(
                 Column(modifier = Modifier.fillMaxSize()) {
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(14.dp)) {
-                            Text("ADD A COOPERATIVE DISPATCH VOUCHER:", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
+                            Text("CREATE NEW COUPON OR OFFER:", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
                             Spacer(modifier = Modifier.height(6.dp))
                             OutlinedTextField(
                                 value = vm.newOfferTitle,
                                 onValueChange = { vm.newOfferTitle = it },
-                                label = { Text("Offer Theme (e.g. Foam Blast)") },
+                                label = { Text("Offer Title (e.g. Foam Blast)") },
                                 modifier = Modifier.fillMaxWidth(),
                                 singleLine = true
                             )
@@ -2808,7 +2826,7 @@ fun AdminDashboardScreen(
                             OutlinedTextField(
                                 value = vm.newOfferDesc,
                                 onValueChange = { vm.newOfferDesc = it },
-                                label = { Text("Brief description of benefits") },
+                                label = { Text("Description") },
                                 modifier = Modifier.fillMaxWidth()
                             )
                             Spacer(modifier = Modifier.height(4.dp))
@@ -2816,14 +2834,14 @@ fun AdminDashboardScreen(
                                 OutlinedTextField(
                                     value = vm.newOfferDiscount,
                                     onValueChange = { vm.newOfferDiscount = it },
-                                    label = { Text("Disp Code Text") },
+                                    label = { Text("Discount (e.g. 20% OFF)") },
                                     modifier = Modifier.weight(1f),
                                     singleLine = true
                                 )
                                 OutlinedTextField(
                                     value = vm.newOfferCode,
                                     onValueChange = { vm.newOfferCode = it },
-                                    label = { Text("Promo String Code") },
+                                    label = { Text("Promo Code (e.g. FOAM20)") },
                                     modifier = Modifier.weight(1f),
                                     singleLine = true
                                 )
@@ -2834,12 +2852,12 @@ fun AdminDashboardScreen(
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                             ) {
-                                Text("INSERT VALUE INTO ROOM DATABASE", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                                Text("SAVE CODE / OFFER", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = Color.White)
                             }
                         }
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-                    Text("ACTIVE DISPATCH LISTS:", fontSize = 11.sp, color = Color.Gray, fontWeight = FontWeight.Bold)
+                    Text("ACTIVE USER OFFERS & COUPONS:", fontSize = 11.sp, color = Color.Gray, fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.height(4.dp))
                     LazyColumn(modifier = Modifier.weight(1f)) {
                         items(offersList) { off ->
@@ -2847,7 +2865,9 @@ fun AdminDashboardScreen(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 4.dp),
-                                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                             ) {
                                 Row(
                                     modifier = Modifier.padding(12.dp),
@@ -2872,10 +2892,12 @@ fun AdminDashboardScreen(
                 Column(modifier = Modifier.fillMaxSize()) {
                     Card(
                         modifier = Modifier.fillMaxWidth(),
-                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                     ) {
                         Column(modifier = Modifier.padding(14.dp)) {
-                            Text("APPEND HIGH GLOSS PORTFOLIO SCREEN:", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
+                            Text("ADD A NEW WORK PHOTO:", fontSize = 11.sp, color = MaterialTheme.colorScheme.primary, fontWeight = FontWeight.Bold)
                             Spacer(modifier = Modifier.height(6.dp))
 
                             // Category dropdown representation
@@ -2908,7 +2930,7 @@ fun AdminDashboardScreen(
                             OutlinedTextField(
                                 value = vm.newGalleryTitle,
                                 onValueChange = { vm.newGalleryTitle = it },
-                                label = { Text("Showcase Picture Highlight Name") },
+                                label = { Text("Photo Title (e.g. Clean Sedan)") },
                                 modifier = Modifier.fillMaxWidth(),
                                 singleLine = true
                             )
@@ -2916,7 +2938,7 @@ fun AdminDashboardScreen(
                             OutlinedTextField(
                                 value = vm.newGalleryDesc,
                                 onValueChange = { vm.newGalleryDesc = it },
-                                label = { Text("Details of polish finish achieved") },
+                                label = { Text("Description") },
                                 modifier = Modifier.fillMaxWidth()
                             )
                             Spacer(modifier = Modifier.height(10.dp))
@@ -2925,12 +2947,12 @@ fun AdminDashboardScreen(
                                 modifier = Modifier.fillMaxWidth(),
                                 colors = ButtonDefaults.buttonColors(containerColor = MaterialTheme.colorScheme.primary)
                             ) {
-                                Text("SAVE APPLIED ATTACHMENT TO DB", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = Color.White)
+                                Text("SAVE PHOTO TO GALLERY", fontSize = 10.sp, fontWeight = FontWeight.Bold, color = Color.White)
                             }
                         }
                     }
                     Spacer(modifier = Modifier.height(12.dp))
-                    Text("ACTIVE PORTFOLIO SPECIMENS:", fontSize = 11.sp, color = Color.Gray, fontWeight = FontWeight.Bold)
+                    Text("ACTIVE GALLERY PHOTOS:", fontSize = 11.sp, color = Color.Gray, fontWeight = FontWeight.Bold)
                     Spacer(modifier = Modifier.height(4.dp))
                     LazyColumn(modifier = Modifier.weight(1f)) {
                         items(galleryList) { item ->
@@ -2938,7 +2960,9 @@ fun AdminDashboardScreen(
                                 modifier = Modifier
                                     .fillMaxWidth()
                                     .padding(vertical = 4.dp),
-                                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+                                colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+                                border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+                                elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
                             ) {
                                 Row(
                                     modifier = Modifier.padding(12.dp),
@@ -2971,7 +2995,8 @@ fun AdminMetricCard(
     Card(
         modifier = modifier,
         colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
-        border = BorderStroke(1.dp, Color.Gray.copy(alpha = 0.2f))
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(
             modifier = Modifier.padding(10.dp),
@@ -3173,7 +3198,9 @@ fun FAQItem(q: String, a: String) {
             .fillMaxWidth()
             .padding(vertical = 4.dp)
             .clickable { expanded = !expanded },
-        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface)
+        colors = CardDefaults.cardColors(containerColor = MaterialTheme.colorScheme.surface),
+        border = BorderStroke(1.dp, MaterialTheme.colorScheme.onSurface.copy(alpha = 0.15f)),
+        elevation = CardDefaults.cardElevation(defaultElevation = 0.dp)
     ) {
         Column(modifier = Modifier.padding(12.dp)) {
             Row(

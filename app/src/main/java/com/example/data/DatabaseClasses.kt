@@ -132,26 +132,26 @@ abstract class AppDatabase : RoomDatabase() {
                         super.onCreate(db)
                         // Inject default static data asynchronously when database is created.
                         db.execSQL("INSERT INTO offers (title, description, discountText, promoCode, bannerIndex, isActive) VALUES " +
-                                "('Foam Wash Deluxe Special', 'Get high gloss finish foam wash premium detailing in Lucknow.', '20% OFF', 'FOAM20', 1, 1), " +
-                                "('Weekend Cleaning Combo', 'Free deep cabin interior vacuuming and carpet dry-wash on standard packages.', 'FREE VACUUM', 'CLEANWEEK', 2, 1), " +
-                                "('Ceramic Paint Protect Shield', 'Long lasting Teflon and ultra-gloss ceramic sealing layers.', '₹500 DISCOUNT', 'SHIELD500', 3, 1), " +
-                                "('Alloy Wheel Detail Shine', 'Special micro-scratch brake dust removal treatments.', '15% SAVINGS', 'WHEEL15', 4, 1)")
+                                "('Foam Wash Deluxe Special', 'Enjoy a complete foam wash with a polished gloss finish.', '20% OFF', 'FOAM20', 1, 1), " +
+                                "('Weekend Cleaning Combo', 'Get free complete interior vacuuming with any wash package over the weekend.', 'FREE VACUUM', 'CLEANWEEK', 2, 1), " +
+                                "('Ceramic Paint Protect Shield', 'Get a professional paint sealant coating to protect your car paint.', '₹500 DISCOUNT', 'SHIELD500', 3, 1), " +
+                                "('Alloy Wheel Detail Shine', 'Deep cleaning for wheels to remove brake dust and restore shine.', '15% SAVINGS', 'WHEEL15', 4, 1)")
 
                         db.execSQL("INSERT INTO gallery_items (category, title, description, drawableResId) VALUES " +
-                                "('Automatic Wash', 'Robotic Tunnel Wash', 'Scratch free smart conveyor mechanism washing fully active.', 'ic_automatic_wash'), " +
-                                "('Automatic Wash', 'Dry Blowers Jet Sparkle', 'Advanced 40HP storm dry blower tunnels.', 'ic_dryer'), " +
-                                "('Foam Wash', 'Premium Foam Bath', 'Active snow lather spray breaking deep dirt bonds.', 'ic_foam_bath'), " +
-                                "('Foam Wash', 'High-Pressure Jet Spray', '350 Bar powerful precision water nozzles cleaning action.', 'ic_pressure_wash'), " +
-                                "('Detailing', 'Teflon Gloss Guard', 'Showroom grade paint protection ceramic details.', 'ic_teflon'), " +
-                                "('Detailing', 'Alloy Buff & Polishing', 'Intense metallic shine brake dust repelling glaze finish.', 'ic_alloys'), " +
-                                "('Interior Cleaning', 'Ozone Air Sterilization', 'Odour elimination, seat dry cleaning, vacuum finish.', 'ic_interior'), " +
-                                "('Interior Cleaning', 'Dashboard Refurbishing', 'Bespoke UV shield protection coating.', 'ic_dashboard')")
+                                "('Automatic Wash', 'Robotic Tunnel Wash', 'Quick and scratch-free machine wash using ultra-soft cloth rollers.', 'ic_automatic_wash'), " +
+                                "('Automatic Wash', 'Dry Blowers Jet Sparkle', 'High-powered air dryers to wipe water away completely.', 'ic_dryer'), " +
+                                "('Foam Wash', 'Premium Foam Bath', 'Thick active snow foam that deeply cleans dirt and stubborn grime.', 'ic_foam_bath'), " +
+                                "('Foam Wash', 'High-Pressure Jet Spray', 'High-pressure water jets to clean mud from wheels and underbody.', 'ic_pressure_wash'), " +
+                                "('Detailing', 'Teflon Gloss Guard', 'Premium protective paint coating for a long-lasting showroom shine.', 'ic_teflon'), " +
+                                "('Detailing', 'Alloy Buff & Polishing', 'Tire polishing and wheel buffing for a clean, shiny look.', 'ic_alloys'), " +
+                                "('Interior Cleaning', 'Ozone Air Sterilization', 'Full vacuuming, deep seat cleaning, and a fresh cabin smell.', 'ic_interior'), " +
+                                "('Interior Cleaning', 'Dashboard Refurbishing', 'Dashboard cleaning and dressing to protect against dust and sun damage.', 'ic_dashboard')")
 
                         db.execSQL("INSERT INTO reviews (reviewerName, rating, comment, vehicleModel, timestamp) VALUES " +
-                                "('Abhishek Mishra', 5, ' Lucknow finally has a international standards futuristic automatic wash. Service done in 10 mins. Absolutely mirror finish! Fully satisfied.', 'Hyundai Creta', ${System.currentTimeMillis() - 86400000}), " +
-                                "('Priya Sharma', 5, 'Amazing snow foam bath service. Staff is professional and machine wash does not scratch the metallic surface like manual rags. Loved the gloss.', 'Honda City', ${System.currentTimeMillis() - 172800000}), " +
-                                "('Rohan Verma', 4, 'Excellent value for interior dry cleaning. The dashboard shines like brand new. Booking through app is very seamless - highly recommended!', 'Tata Nexon', ${System.currentTimeMillis() - 259200000}), " +
-                                "('Vikram Kapoor', 5, 'Super luxury treatment. Applied Teflon coating, and my car looks dazzling. Best car wash center in UP. Smooth digital process.', 'BMW 3-Series', ${System.currentTimeMillis() - 345600000})")
+                                "('Abhishek Mishra', 5, 'Super fast and clean. The automatic wash took less than 10 minutes and left a great shine. Very happy with the service.', 'Hyundai Creta', ${System.currentTimeMillis() - 86400000}), " +
+                                "('Priya Sharma', 5, 'Great foam wash. The staff is polite and helpful. The automatic wash is safe for paint and doesn\\'t cause scratches. Highly recommend.', 'Honda City', ${System.currentTimeMillis() - 172800000}), " +
+                                "('Rohan Verma', 4, 'Great value for interior cleaning. The dashboard looks clean and dust-free. Booking via this app is simple and quick.', 'Tata Nexon', ${System.currentTimeMillis() - 259200000}), " +
+                                "('Vikram Kapoor', 5, 'Got a complete protective wash and polish. The car looks as good as new. Clean waiting lounge and fast service.', 'BMW 3-Series', ${System.currentTimeMillis() - 345600000})")
                     }
                 })
                 .build()
