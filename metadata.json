@@ -1,0 +1,6 @@
+{
+  "name": "Robotic Xpress Car Wash",
+  "description": "Lucknow's first advanced automatic car wash experience offering premium cleaning, detailing, and scheduling.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
