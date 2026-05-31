@@ -127,19 +127,26 @@ class MainActivity : ComponentActivity() {
         }
 
         // Set global crash catcher
-        Thread.setDefaultUncaughtExceptionHandler { _, throwable ->
+        Thread.setDefaultUncaughtExceptionHandler { thread, throwable ->
+            android.util.Log.e("CarWashAppCrash", "FATAL CRASH DETECTED on thread ${thread.name}:", throwable)
+            
             val sw = java.io.StringWriter()
             val pw = java.io.PrintWriter(sw)
             throwable.printStackTrace(pw)
             val stackTraceString = sw.toString()
             
-            val restartIntent = Intent(this, MainActivity::class.java).apply {
-                putExtra("crash_trace", stackTraceString)
-                flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+            try {
+                val restartIntent = Intent(this, MainActivity::class.java).apply {
+                    putExtra("crash_trace", stackTraceString)
+                    flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                }
+                startActivity(restartIntent)
+            } catch (e: Exception) {
+                android.util.Log.e("CarWashAppCrash", "Failed to launch crash diagnostics console", e)
+            } finally {
+                android.os.Process.killProcess(android.os.Process.myPid())
+                java.lang.System.exit(10)
             }
-            startActivity(restartIntent)
-            android.os.Process.killProcess(android.os.Process.myPid())
-            java.lang.System.exit(10)
         }
 
         super.onCreate(savedInstanceState)
