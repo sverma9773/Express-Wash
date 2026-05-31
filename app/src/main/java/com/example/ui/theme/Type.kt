@@ -8,13 +8,13 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.R
 
-// Direct mapping of the Urbanist font family using local font resources
+// Direct mapping of the Google Sans font family using local font resources
 val AppFontFamily = FontFamily(
-    Font(resId = R.font.urbanist_light, weight = FontWeight.Light),
-    Font(resId = R.font.urbanist_regular, weight = FontWeight.Normal),
-    Font(resId = R.font.urbanist_medium, weight = FontWeight.Medium),
-    Font(resId = R.font.urbanist_semibold, weight = FontWeight.SemiBold),
-    Font(resId = R.font.urbanist_bold, weight = FontWeight.Bold)
+    Font(resId = R.font.googlesans_light, weight = FontWeight.Light),
+    Font(resId = R.font.googlesans_regular, weight = FontWeight.Normal),
+    Font(resId = R.font.googlesans_medium, weight = FontWeight.Medium),
+    Font(resId = R.font.googlesans_semibold, weight = FontWeight.SemiBold),
+    Font(resId = R.font.googlesans_bold, weight = FontWeight.Bold)
 )
 
 // Set of Material typography styles using Urbanist strictly

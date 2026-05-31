@@ -132,11 +132,11 @@ tasks.register("downloadFonts") {
       destDir.mkdirs()
     }
     val fonts = mapOf(
-      "urbanist_light.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-Light.ttf",
-      "urbanist_regular.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-Regular.ttf",
-      "urbanist_medium.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-Medium.ttf",
-      "urbanist_semibold.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-SemiBold.ttf",
-      "urbanist_bold.ttf" to "https://raw.githubusercontent.com/coreyhu/Urbanist/main/fonts/ttf/Urbanist-Bold.ttf"
+      "googlesans_light.ttf" to "https://fonts.gstatic.com/s/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_907NSg.ttf",
+      "googlesans_regular.ttf" to "https://fonts.gstatic.com/s/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_qU7NSg.ttf",
+      "googlesans_medium.ttf" to "https://fonts.gstatic.com/s/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_m07NSg.ttf",
+      "googlesans_semibold.ttf" to "https://fonts.gstatic.com/s/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_d0nNSg.ttf",
+      "googlesans_bold.ttf" to "https://fonts.gstatic.com/s/plusjakartasans/v12/LDIbaomQNQcsA88c7O9yZ4KMCoOg4IA6-91aHEjcWuA_TknNSg.ttf"
     )
     for ((name, urlStr) in fonts) {
       val destFile = File(destDir, name)
