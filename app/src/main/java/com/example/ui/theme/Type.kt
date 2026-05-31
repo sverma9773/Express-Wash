@@ -2,19 +2,29 @@ package com.example.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.googlefonts.Font
+import androidx.compose.ui.text.googlefonts.GoogleFont
 import androidx.compose.ui.unit.sp
 import com.example.R
 
-// Direct mapping of the Urbanist font family using local font resources
+// Standard Google Font provider for downloadable fonts
+val provider = GoogleFont.Provider(
+    providerAuthority = "com.google.android.gms.fonts",
+    providerPackage = "com.google.android.gms",
+    certificates = R.array.com_google_android_gms_fonts_certs
+)
+
+val AppFontName = GoogleFont("Urbanist")
+
+// Direct mapping of the Urbanist font family using the GMS downloadable fonts provider (safely falls back to system SansSerif)
 val AppFontFamily = FontFamily(
-    Font(resId = R.font.urbanist_light, weight = FontWeight.Light),
-    Font(resId = R.font.urbanist_regular, weight = FontWeight.Normal),
-    Font(resId = R.font.urbanist_medium, weight = FontWeight.Medium),
-    Font(resId = R.font.urbanist_semibold, weight = FontWeight.SemiBold),
-    Font(resId = R.font.urbanist_bold, weight = FontWeight.Bold)
+    Font(googleFont = AppFontName, fontProvider = provider, weight = FontWeight.Light),
+    Font(googleFont = AppFontName, fontProvider = provider, weight = FontWeight.Normal),
+    Font(googleFont = AppFontName, fontProvider = provider, weight = FontWeight.Medium),
+    Font(googleFont = AppFontName, fontProvider = provider, weight = FontWeight.SemiBold),
+    Font(googleFont = AppFontName, fontProvider = provider, weight = FontWeight.Bold)
 )
 
 // Set of Material typography styles using Urbanist strictly
