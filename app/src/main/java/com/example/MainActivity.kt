@@ -50,6 +50,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import androidx.lifecycle.viewmodel.compose.viewModel
+import coil.compose.AsyncImage
 import com.example.data.*
 import com.example.ui.CarWashViewModel
 import com.example.ui.theme.MyApplicationTheme
@@ -875,13 +876,13 @@ fun HomeScreen(
 ) {
     val scrollState = rememberScrollState()
 
-    // Slide Carousel State
+    // Slide Carousel State with actual image URLs from Google Drive with highest loading reliability via thumbnail API
     val banners = listOf(
-        Pair("Automatic Tunnel Wash", "Fast and scratch-free machine wash using soft rollers"),
-        Pair("Premium Foam Wash", "Thick active snow foam that deeply cleans dirt and road grime"),
-        Pair("Paint Protective Wax", "Long-lasting wax coating for paint protection and a deep shine"),
-        Pair("Alloy Wheel Deep Cleaning", "Cleans brake dust and shines wheels for a clean finish"),
-        Pair("Full Cabin Vacuuming", "Thorough seat cleaning, vacuuming, and dashboard dressing")
+        Triple("Automatic Tunnel Wash", "Fast and scratch-free machine wash using soft rollers", "https://drive.google.com/thumbnail?id=151JqlldYSckRi3OwkrKUK0nn-3fKtZRY&sz=w1000"),
+        Triple("Premium Foam Wash", "Thick active snow foam that deeply cleans dirt and road grime", "https://drive.google.com/thumbnail?id=1tI75I_HXTGUq5ohtz3e28x8ZJe1UGyUx&sz=w1000"),
+        Triple("Paint Protective Wax", "Long-lasting wax coating for paint protection and a deep shine", "https://drive.google.com/thumbnail?id=1AdQ5Cynho05jfjOVnDNn0NTNi9FseRqm&sz=w1000"),
+        Triple("Alloy Wheel Deep Cleaning", "Cleans brake dust and shines wheels for a clean finish", "https://drive.google.com/thumbnail?id=1H677bRoXN9ro8XXnVS8ipzd2udNKN70f&sz=w1000"),
+        Triple("Full Cabin Vacuuming", "Thorough seat cleaning, vacuuming, and dashboard dressing", "https://drive.google.com/thumbnail?id=1unAqtugzWSNZE9FylpdfSne16MfpPKgG&sz=w1000")
     )
     var activeSlideIndex by remember { mutableStateOf(0) }
 
@@ -908,23 +909,7 @@ fun HomeScreen(
                     .height(210.dp)
                     .background(Color.Black)
             ) {
-                // Background artistic gradient block mimicking high-end detailing studio lights
-                Box(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .drawBehind {
-                            drawRect(
-                                brush = Brush.verticalGradient(
-                                    colors = listOf(
-                                        Color(0xFFE30613).copy(alpha = 0.25f),
-                                        Color.Black
-                                    )
-                                )
-                            )
-                        }
-                )
-
-                // Carousel Content Display with nice slide animations
+                // Carousel Content Display with nice slide animations and background imagery
                 AnimatedContent(
                     targetState = activeSlideIndex,
                     transitionSpec = {
@@ -933,41 +918,66 @@ fun HomeScreen(
                     },
                     modifier = Modifier.fillMaxSize()
                 ) { targetIndex ->
-                    Column(
-                        modifier = Modifier
-                            .fillMaxSize()
-                            .padding(20.dp),
-                        verticalArrangement = Arrangement.Bottom
-                    ) {
-                        Surface(
-                            color = Color(0xFFE30613).copy(alpha = 0.15f),
-                            border = BorderStroke(1.dp, Color(0xFFE30613)),
-                            shape = RoundedCornerShape(4.dp),
-                            modifier = Modifier.padding(bottom = 8.dp)
+                    val banner = banners[targetIndex]
+                    Box(modifier = Modifier.fillMaxSize()) {
+                        // Slider background image loaded directly via Coil
+                        AsyncImage(
+                            model = banner.third,
+                            contentDescription = banner.first,
+                            contentScale = ContentScale.Crop,
+                            modifier = Modifier.fillMaxSize()
+                        )
+
+                        // Rich linear gradient protection overlay ensuring contrast and accessibility
+                        Box(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .background(
+                                    Brush.verticalGradient(
+                                        colors = listOf(
+                                            Color.Black.copy(alpha = 0.3f),
+                                            Color.Black.copy(alpha = 0.85f)
+                                        )
+                                    )
+                                )
+                        )
+
+                        Column(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(20.dp),
+                            verticalArrangement = Arrangement.Bottom
                         ) {
+                            Surface(
+                                color = Color(0xFFE30613).copy(alpha = 0.15f),
+                                border = BorderStroke(1.dp, Color(0xFFE30613)),
+                                shape = RoundedCornerShape(4.dp),
+                                modifier = Modifier.padding(bottom = 8.dp)
+                            ) {
+                                Text(
+                                    text = " FEATURE ${targetIndex + 1}/5 ",
+                                    fontSize = 9.sp,
+                                    color = Color(0xFFFF4D4D),
+                                    fontWeight = FontWeight.Bold,
+                                    modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                )
+                            }
                             Text(
-                                text = " FEATURE ${targetIndex + 1}/5 ",
-                                fontSize = 9.sp,
-                                color = Color(0xFFFF4D4D),
-                                fontWeight = FontWeight.Bold,
-                                modifier = Modifier.padding(horizontal = 6.dp, vertical = 2.dp)
+                                text = banner.first,
+                                fontSize = 20.sp,
+                                fontWeight = FontWeight.Black,
+                                color = Color.White
                             )
+                            Text(
+                                text = banner.second,
+                                fontSize = 12.sp,
+                                fontWeight = FontWeight.Normal,
+                                color = Color.LightGray,
+                                maxLines = 1,
+                                overflow = TextOverflow.Ellipsis
+                            )
+                            Spacer(modifier = Modifier.height(16.dp))
                         }
-                        Text(
-                            text = banners[targetIndex].first,
-                            fontSize = 20.sp,
-                            fontWeight = FontWeight.Black,
-                            color = Color.White
-                        )
-                        Text(
-                            text = banners[targetIndex].second,
-                            fontSize = 12.sp,
-                            fontWeight = FontWeight.Normal,
-                            color = Color.LightGray,
-                            maxLines = 1,
-                            overflow = TextOverflow.Ellipsis
-                        )
-                        Spacer(modifier = Modifier.height(16.dp))
                     }
                 }
 

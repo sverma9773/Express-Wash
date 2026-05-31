@@ -149,7 +149,7 @@ abstract class AppDatabase : RoomDatabase() {
 
                         db.execSQL("INSERT INTO reviews (reviewerName, rating, comment, vehicleModel, timestamp) VALUES " +
                                 "('Abhishek Mishra', 5, 'Super fast and clean. The automatic wash took less than 10 minutes and left a great shine. Very happy with the service.', 'Hyundai Creta', ${System.currentTimeMillis() - 86400000}), " +
-                                "('Priya Sharma', 5, 'Great foam wash. The staff is polite and helpful. The automatic wash is safe for paint and doesn\\'t cause scratches. Highly recommend.', 'Honda City', ${System.currentTimeMillis() - 172800000}), " +
+                                "('Priya Sharma', 5, 'Great foam wash. The staff is polite and helpful. The automatic wash is safe for paint and does not cause scratches. Highly recommend.', 'Honda City', ${System.currentTimeMillis() - 172800000}), " +
                                 "('Rohan Verma', 4, 'Great value for interior cleaning. The dashboard looks clean and dust-free. Booking via this app is simple and quick.', 'Tata Nexon', ${System.currentTimeMillis() - 259200000}), " +
                                 "('Vikram Kapoor', 5, 'Got a complete protective wash and polish. The car looks as good as new. Clean waiting lounge and fast service.', 'BMW 3-Series', ${System.currentTimeMillis() - 345600000})")
                     }
